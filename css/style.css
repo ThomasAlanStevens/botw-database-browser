@@ -298,7 +298,6 @@ body{
   font-size: 2rem;
   width: 70%;
   max-width: 50rem;
-  max-height: 90%;
   padding-bottom: .5rem;
   display: flex;
   flex-flow: column nowrap;
@@ -376,7 +375,8 @@ body{
 
 /* Media Queries */
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px), 
+       screen and (max-height:1200px){
   .glow-on-hover {
     width: 125px;
     height: 40px;
@@ -406,7 +406,8 @@ body{
   }
 }
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 750px),
+       screen and (max-height: 900px){
   .glow-on-hover {
     width: 100px;
     height: 30px;

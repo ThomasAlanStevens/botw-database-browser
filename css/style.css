@@ -268,29 +268,45 @@ body{
   text-align: center;
   width: 90%;
   max-width: 90%;
-
 }
 
 
 /* Styles for the section that displays when you click on a card. */
-.botwHidden {
-  opacity: 0;
-  transition: .5s;
+.botwItemWindow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  color: black;
+  z-index: 10;
+  font-size: 2rem;
+  width: 90vw;
+  max-width: 50rem;
+  padding-bottom: .5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border: 10px groove #867857;
+  border-radius: 10px;
 }
 
-.botwHiddenZ {
-  z-index: -5;
+.botwHidden {
+  display: none;
 }
 
 .botwItemWindow p {
-  margin: 0 1rem .5rem 1rem;
-  padding: 1rem;
+  margin: 0 5% 2.5% 5%;
+  padding: 2%;
   background: rgba(255, 255, 255,.5);
   border-radius: 10px;
 }
 
 .botwItemWindow #contentImage {
-  padding: .5em 0;
+  padding: 4% 0;
+  min-width: 60%;
+  max-width: 80%;
 }
 
 .botwItemWindow h2 {
@@ -298,32 +314,11 @@ body{
   background: rgba(255, 255, 255,.5);
   width: 100%;
   text-align: center;
-  border-radius: 7px 7px 0 0;
-}
-
-.botwItemWindow {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: left;
-  background: rgba(0, 0, 0,.9);
-  background: #1c6cba;
-  color: black;
-  z-index: 10;
-  font-size: 2rem;
-  width: 90vw;
-  max-width: 50rem;
-  border-radius: 10px;
-  padding-bottom: .5rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .botwFullWindowOn {
   position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0,.5);
@@ -386,8 +381,11 @@ body{
 
   .contentItem h2{
     padding: .2em;
-}
+  }
 
+  .botwItemWindow {
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 750px){
@@ -402,7 +400,13 @@ body{
     padding: 10px;
   }
   
-  .content .headerTitle{ font-size:18px;}
+  .content .headerTitle{ 
+    font-size:18px;
+  }
+
+  .botwItemWindow {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 455px){
@@ -419,5 +423,9 @@ body{
   .box .content {
     vertical-align: center;
     padding: 10px 2px;
+  }
+
+  .botwItemWindow {
+    font-size: 3.5vw;
   }
 }

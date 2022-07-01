@@ -1,3 +1,6 @@
+// Global variables
+let itemWindow = document.querySelector('.botwItemWindow')
+
 // Functions and associated event listeners
 
 // Clears page to make room for search results and new categories.
@@ -9,13 +12,11 @@ function clearGrid(){
 //Displays detailed card when the user clicks on the card.
 function showDetails(){
     let detailsArray = Array.from(this.childNodes)
-    console.log(detailsArray)
     document.querySelector('#contentName').innerText = `${detailsArray[0]['innerHTML']}`
     document.querySelector('#contentImage').src = `${detailsArray[1]['currentSrc']}`
     document.querySelector('#contentImage').alt = `${detailsArray[1]['alt']}`
     document.querySelector('#contentText').innerText = `${detailsArray[2]['innerHTML']}`
     document.querySelector('.botwItemWindow').classList.toggle('botwHidden')
-    document.querySelector('.botwItemWindow').classList.toggle('botwHiddenZ')
     document.querySelector('.botwFullWindow').classList.toggle('botwFullWindowOn')
 }
 
@@ -24,7 +25,6 @@ document.querySelector('.botwFullWindow').addEventListener('click', hideDetails)
 
 function hideDetails(){
     document.querySelector('.botwItemWindow').classList.toggle('botwHidden')
-    document.querySelector('.botwItemWindow').classList.toggle('botwHiddenZ')
     document.querySelector('.botwFullWindow').classList.toggle('botwFullWindowOn')
 }
 
@@ -34,16 +34,19 @@ document.querySelector('.showMonsters').addEventListener('click', displayMonster
 
 async function displayMonsters(){
     clearGrid()
+    itemWindow.style.background = 'radial-gradient(#bf0000, #000000)'
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/monsters`)
     let data = await res.json()
     let monsters = data.data
+    monsters.sort((monster1, monster2) => monster1.name.localeCompare(monster2.name))
     console.log(monsters)
+
 
     monsters.forEach(monster => {
         let li = document.createElement('li')
         li.style.background = 'radial-gradient(#bf0000, #000000)'
         li.classList.add('contentItem')
-        li.innerHTML = `<h2>${monster.name.split(' ').map(word => `${word[0].toUpperCase()}${word.slice(1)}`).join(' ')}</h2><img src="${monster.image}" alt="${monster.name}"><p class='overflow'>${monster.description}</p>`
+        li.innerHTML = `<h2>${monster.name.split(' ').map(word => `${word[0].toUpperCase()}${word.slice(1)}`).join(' ')}</h2><img src="${monster.image}" alt="${monster.name}"><p class='overflow'>${monster.description} </p>`
         document.querySelector('#content').appendChild(li)
         li.addEventListener('click', showDetails)
     })
@@ -54,13 +57,17 @@ document.querySelector('.showCreatures').addEventListener('click', displayCreatu
 
 async function displayCreatures(){
     clearGrid()
+    itemWindow.style.background = 'radial-gradient(rgb(0 255 235), rgb(0 0 0))'
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/creatures`)
     let data = await res.json()
     let creatures = data.data
-    console.log(creatures['food'])
-    console.log(creatures['non_food'])
+    let nonFood = creatures['non_food']
+    nonFood.sort((food1, food2) => food1.name.localeCompare(food2.name))
+    let food = creatures['food']
+    food.sort((food1, food2) => food1.name.localeCompare(food2.name))
+    console.log(food, nonFood)
 
-    creatures['food'].forEach(creature => {
+    nonFood.forEach(creature => {
         let li = document.createElement('li')
         li.style.background = 'radial-gradient(rgb(0 255 235), rgb(0 0 0))'
         li.classList.add('contentItem')
@@ -69,7 +76,7 @@ async function displayCreatures(){
         li.addEventListener('click', showDetails)
     })
 
-    creatures['non_food'].forEach(creature => {
+    food.forEach(creature => {
         let li = document.createElement('li')
         li.style.background = 'radial-gradient(rgb(0 255 235), rgb(0 0 0))'
         li.classList.add('contentItem')
@@ -84,6 +91,7 @@ document.querySelector('.showTreasures').addEventListener('click', displayTreasu
 
 async function displayTreasure(){
     clearGrid()
+    itemWindow.style.background = 'radial-gradient(#ff7200, #2b1b1b)'
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/treasure`)
     let data = await res.json()
     let treasures = data.data
@@ -104,6 +112,7 @@ document.querySelector('.showMaterials').addEventListener('click', displayMateri
 
 async function displayMaterials(){
     clearGrid()
+    itemWindow.style.background = 'radial-gradient(#fff200, rgb(96 96 0))'
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/materials`)
     let data = await res.json()
     let materials = data.data
@@ -124,6 +133,7 @@ document.querySelector('.showEquipment').addEventListener('click', displayEquipm
 
 async function displayEquipment(){
     clearGrid()
+    itemWindow.style.background = 'radial-gradient(white, rgb(54 54 54))'
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/equipment`)
     let data = await res.json()
     let equipments = data.data

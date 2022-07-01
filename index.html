@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>BOTW Database</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Rye&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="/css/style.css">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <div class="background-img">
+          <div class="box">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="content">
+              <h2 class="headerTitle">Legend Of Zelda: BOTW Database Browser</h2>
+              <nav>
+                <ul class="navCategories">
+                  <button class="glow-on-hover showMonsters" type="button">Monsters</button>
+                  <button class="glow-on-hover showCreatures" type="button">Creatures</button>
+                  <button class="glow-on-hover showEquipment" type="button">Equipment</button>
+                  <button class="glow-on-hover showMaterials" type="button">Materials</button>
+                  <button class="glow-on-hover showTreasures" type="button">Treasures</button>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- <input type="text"> -->
+
+    <main class="botwFullWindow">
+      <section class="botwItemWindow botwHidden botwHiddenZ">
+          <section id="botwImageContainer">
+            <h2 id="contentName" class="name"></h2>
+            <img id="botwIcon"src="/assets/botwIcon.png" alt="">
+            <img id="botwTriforce"src="/assets/triforce.gif" alt="">
+          </section>
+          <img id="contentImage" src="#" alt="#">
+          <p id="contentText"></p>
+      </section>
+    </main>
+
+    <ul id="content">
+        
+    </ul>    
+    <script src="/js/main.js"></script>
+  </body>
+</html>

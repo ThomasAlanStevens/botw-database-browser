@@ -218,7 +218,8 @@ body{
 #searchBar {
   margin: 1rem auto;
   display: block;
-  width: 30rem;
+  width: 80%;
+  max-width: 30rem;
   text-align: center;
   border: 4px groove #867857;
   border-radius: 10px;
@@ -419,6 +420,11 @@ body{
   .botwItemWindow {
     font-size: 1rem;
   }
+
+  #searchBar {
+    font-size: small;
+  }
+  
 }
 
 @media screen and (max-width: 455px){
@@ -440,4 +446,9 @@ body{
   .botwItemWindow {
     font-size: 3.5vw;
   }
+
+  #searchBar {
+    font-size: 3vw;
+  }
+  
 }

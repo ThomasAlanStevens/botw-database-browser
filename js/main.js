@@ -152,7 +152,13 @@ async function displayEquipment(){
     })
 }
 
-// Allows to search
+// Allows user to search names and keywords in card.
+let searchBar = document.querySelector('#searchBar')
+searchBar.addEventListener('keydown', search)
+
+function search(){
+    
+}
 
 displayMonsters()
 

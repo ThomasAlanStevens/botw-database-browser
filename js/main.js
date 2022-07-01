@@ -95,6 +95,7 @@ async function displayTreasure(){
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/treasure`)
     let data = await res.json()
     let treasures = data.data
+    treasures.sort((treasure1, treasure2) => treasure1.name.localeCompare(treasure2.name))
     console.log(treasures)
 
     treasures.forEach(treasure => {
@@ -116,6 +117,7 @@ async function displayMaterials(){
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/materials`)
     let data = await res.json()
     let materials = data.data
+    materials.sort((material1, material2) => material1.name.localeCompare(material2.name))
     console.log(materials)
 
     materials.forEach(material => {
@@ -137,6 +139,7 @@ async function displayEquipment(){
     let res = await  fetch(`https://botw-compendium.herokuapp.com/api/v2/category/equipment`)
     let data = await res.json()
     let equipments = data.data
+    equipments.sort((equipment1, equipment2) => equipment1.name.localeCompare(equipment2.name))
     console.log(equipments)
 
     equipments.forEach(equipment => {
@@ -148,6 +151,8 @@ async function displayEquipment(){
         li.addEventListener('click', showDetails)
     })
 }
+
+// Allows to search
 
 displayMonsters()
 

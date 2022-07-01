@@ -214,6 +214,18 @@ body{
     100% { background-position: 0 0; }
 }
 
+/* Search bar styles */
+#searchBar {
+  margin: 1rem auto;
+  display: block;
+  width: 30rem;
+  text-align: center;
+  border: 4px groove #867857;
+  border-radius: 10px;
+  padding: .5rem;
+  background: #142b41;
+  color: white;
+}
 
 /* Grid For Cards */
 #content{

@@ -1,5 +1,13 @@
 // Global variables
 let itemWindow = document.querySelector('.botwItemWindow')
+let searchBar = document.querySelector('#searchBar')
+let monsters
+let creatures
+let nonFood
+let food
+let treasures
+let materials
+let equipments
 
 // Functions and associated event listeners
 
@@ -31,7 +39,6 @@ function hideDetails(){
 
 // Displays all monsters on grid in as cards
 document.querySelector('.showMonsters').addEventListener('click', displayMonsters)
-let monsters
 
 async function displayMonsters(){
     clearGrid()
@@ -41,7 +48,6 @@ async function displayMonsters(){
     let data = await res.json()
     monsters = data.data
     monsters.sort((monster1, monster2) => monster1.name.localeCompare(monster2.name))
-    // console.log(monsters)
 
     monsters.forEach(monster => {
         let li = document.createElement('li')
@@ -55,9 +61,6 @@ async function displayMonsters(){
 
 // Displays all Creatures on grid in as cards
 document.querySelector('.showCreatures').addEventListener('click', displayCreatures)
-let creatures
-let nonFood
-let food
 
 async function displayCreatures(){
     clearGrid()
@@ -70,7 +73,6 @@ async function displayCreatures(){
     nonFood.sort((food1, food2) => food1.name.localeCompare(food2.name))
     food = creatures['food']
     food.sort((food1, food2) => food1.name.localeCompare(food2.name))
-    // console.log(food, nonFood)
 
     nonFood.forEach(creature => {
         let li = document.createElement('li')
@@ -93,7 +95,6 @@ async function displayCreatures(){
 
 // Displays all treasures on grid in as cards
 document.querySelector('.showTreasures').addEventListener('click', displayTreasure)
-let treasures
 
 async function displayTreasure(){
     clearGrid()
@@ -103,7 +104,6 @@ async function displayTreasure(){
     let data = await res.json()
     treasures = data.data
     treasures.sort((treasure1, treasure2) => treasure1.name.localeCompare(treasure2.name))
-    // console.log(treasures)
 
     treasures.forEach(treasure => {
         let li = document.createElement('li')
@@ -117,7 +117,6 @@ async function displayTreasure(){
 
 // Displays all materials on grid in as cards
 document.querySelector('.showMaterials').addEventListener('click', displayMaterials)
-let materials
 
 async function displayMaterials(){
     clearGrid()
@@ -127,7 +126,6 @@ async function displayMaterials(){
     let data = await res.json()
     let materials = data.data
     materials.sort((material1, material2) => material1.name.localeCompare(material2.name))
-    // console.log(materials)
 
     materials.forEach(material => {
         let li = document.createElement('li')
@@ -141,7 +139,6 @@ async function displayMaterials(){
 
 // Displays all equipment on grid in as cards
 document.querySelector('.showEquipment').addEventListener('click', displayEquipment)
-let equipments
 
 async function displayEquipment(){
     clearGrid()
@@ -151,7 +148,6 @@ async function displayEquipment(){
     let data = await res.json()
     equipments = data.data
     equipments.sort((equipment1, equipment2) => equipment1.name.localeCompare(equipment2.name))
-    // console.log(equipments)
 
     equipments.forEach(equipment => {
         let li = document.createElement('li')
@@ -163,7 +159,9 @@ async function displayEquipment(){
     })
 }
 
-// Allows user to search names and keywords in card.
+// Search Bar
+
+// Set category to search through.
 let category = 'Monsters'
 document.querySelector('.showEquipment').addEventListener('click', setCategory)
 document.querySelector('.showMaterials').addEventListener('click', setCategory)
@@ -176,7 +174,8 @@ function setCategory(){
     category = this.classList[1].slice(4,)
 }
 
-let searchBar = document.querySelector('#searchBar')
+// Search through the botw api based on keywords entered and the category.
+
 searchBar.addEventListener('keyup', search)
 
 async function search(e){
@@ -212,7 +211,6 @@ async function search(e){
             nonFood = creatures['non_food'].filter(creature => creature.name.includes(searchBarVal))
             food.sort((food1, food2) => food1.name.localeCompare(food2.name))
             food = creatures['food'].filter(creature => creature.name.includes(searchBarVal))
-            // console.log(food, nonFood)
         
             nonFood.forEach(creature => {
                 let li = document.createElement('li')
@@ -239,7 +237,6 @@ async function search(e){
             equipments = data.data
             equipments.sort((equipment1, equipment2) => equipment1.name.localeCompare(equipment2.name))
             equipments = equipments.filter(equipment => equipment.name.includes(searchBarVal))
-            // console.log(equipments)
         
             equipments.forEach(equipment => {
                 let li = document.createElement('li')
@@ -257,7 +254,6 @@ async function search(e){
             let materials = data.data
             materials.sort((material1, material2) => material1.name.localeCompare(material2.name))
             materials = materials.filter(material => material.name.includes(searchBarVal))
-            // console.log(materials)
         
             materials.forEach(material => {
                 let li = document.createElement('li')
@@ -275,7 +271,6 @@ async function search(e){
             treasures = data.data
             treasures.sort((treasure1, treasure2) => treasure1.name.localeCompare(treasure2.name))
             treasures = treasures.filter(treasure => treasure.name.includes(searchBarVal))
-            // console.log(treasures)
         
             treasures.forEach(treasure => {
                 let li = document.createElement('li')
